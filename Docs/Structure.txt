@@ -1,0 +1,156 @@
+smart-driving-risk-monitoring-system/
+│
+├── mobile-app/
+│   ├── lib/
+│   │   ├── main.dart
+│   │   ├── app.dart
+│   │   │
+│   │   ├── core/
+│   │   │   ├── constants/
+│   │   │   │   ├── app_constants.dart
+│   │   │   │   ├── thresholds.dart
+│   │   │   │   └── api_urls.dart
+│   │   │   ├── utils/
+│   │   │   │   ├── speed_converter.dart
+│   │   │   │   ├── sensor_utils.dart
+│   │   │   │   └── date_time_utils.dart
+│   │   │   └── services/
+│   │   │       ├── sensor_service.dart
+│   │   │       ├── location_service.dart
+│   │   │       ├── trip_service.dart
+│   │   │       ├── storage_service.dart
+│   │   │       └── api_service.dart
+│   │   │
+│   │   ├── features/
+│   │   │   ├── auth/
+│   │   │   │   ├── login_page.dart
+│   │   │   │   └── auth_controller.dart
+│   │   │   ├── trip/
+│   │   │   │   ├── start_trip_page.dart
+│   │   │   │   ├── active_trip_page.dart
+│   │   │   │   ├── end_trip_page.dart
+│   │   │   │   └── trip_controller.dart
+│   │   │   ├── detection/
+│   │   │   │   ├── event_detector.dart
+│   │   │   │   ├── braking_detector.dart
+│   │   │   │   ├── acceleration_detector.dart
+│   │   │   │   ├── turn_detector.dart
+│   │   │   │   ├── overspeed_detector.dart
+│   │   │   │   └── pothole_detector.dart
+│   │   │   ├── scoring/
+│   │   │   │   ├── score_engine.dart
+│   │   │   │   └── risk_classifier.dart
+│   │   │   ├── summary/
+│   │   │   │   ├── trip_summary_page.dart
+│   │   │   │   └── summary_controller.dart
+│   │   │   └── history/
+│   │   │       ├── trip_history_page.dart
+│   │   │       └── event_history_page.dart
+│   │   │
+│   │   ├── models/
+│   │   │   ├── trip_model.dart
+│   │   │   ├── sensor_data_model.dart
+│   │   │   ├── event_model.dart
+│   │   │   ├── score_model.dart
+│   │   │   └── driver_model.dart
+│   │   │
+│   │   └── widgets/
+│   │       ├── sensor_card.dart
+│   │       ├── score_card.dart
+│   │       ├── trip_button.dart
+│   │       └── event_tile.dart
+│   │
+│   ├── pubspec.yaml
+│   └── README.md
+│
+├── backend/
+│   ├── app/
+│   │   ├── main.py
+│   │   ├── core/
+│   │   │   ├── config.py
+│   │   │   ├── database.py
+│   │   │   └── security.py
+│   │   │
+│   │   ├── api/
+│   │   │   ├── routes/
+│   │   │   │   ├── auth.py
+│   │   │   │   ├── trips.py
+│   │   │   │   ├── events.py
+│   │   │   │   ├── scores.py
+│   │   │   │   ├── drivers.py
+│   │   │   │   └── reports.py
+│   │   │
+│   │   ├── models/
+│   │   │   ├── driver.py
+│   │   │   ├── trip.py
+│   │   │   ├── event.py
+│   │   │   └── score.py
+│   │   │
+│   │   ├── schemas/
+│   │   │   ├── driver_schema.py
+│   │   │   ├── trip_schema.py
+│   │   │   ├── event_schema.py
+│   │   │   └── score_schema.py
+│   │   │
+│   │   ├── services/
+│   │   │   ├── trip_service.py
+│   │   │   ├── event_service.py
+│   │   │   ├── score_service.py
+│   │   │   ├── report_service.py
+│   │   │   └── auth_service.py
+│   │   │
+│   │   └── utils/
+│   │       ├── helpers.py
+│   │       └── validators.py
+│   │
+│   ├── requirements.txt
+│   └── README.md
+│
+├── dashboard/
+│   ├── src/
+│   │   ├── main.jsx
+│   │   ├── App.jsx
+│   │   ├── api/
+│   │   │   └── apiClient.js
+│   │   ├── components/
+│   │   │   ├── Navbar.jsx
+│   │   │   ├── Sidebar.jsx
+│   │   │   ├── DriverCard.jsx
+│   │   │   ├── ScoreChart.jsx
+│   │   │   ├── EventTable.jsx
+│   │   │   └── TripSummaryCard.jsx
+│   │   ├── pages/
+│   │   │   ├── LoginPage.jsx
+│   │   │   ├── DashboardHome.jsx
+│   │   │   ├── DriversPage.jsx
+│   │   │   ├── TripsPage.jsx
+│   │   │   ├── EventsPage.jsx
+│   │   │   ├── ReportsPage.jsx
+│   │   │   └── HeatmapPage.jsx
+│   │   └── utils/
+│   │       └── formatters.js
+│   ├── package.json
+│   └── README.md
+│
+├── docs/
+│   ├── synopsis.pdf
+│   ├── literature-review.md
+│   ├── problem-statement.md
+│   ├── objectives.md
+│   ├── methodology.md
+│   ├── architecture-diagram.png
+│   ├── flowchart.png
+│   ├── api-documentation.md
+│   ├── thresholds-and-scoring.md
+│   ├── weekly-diary.md
+│   └── meeting-notes.md
+│
+├── testing/
+│   ├── mobile-tests/
+│   ├── backend-tests/
+│   ├── dashboard-tests/
+│   └── sample-data/
+│
+├── .gitignore
+├── LICENSE
+└── README.md
