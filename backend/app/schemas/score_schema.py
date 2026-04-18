@@ -1,0 +1,1 @@
+﻿# Score request/response schemas

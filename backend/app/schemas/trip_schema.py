@@ -1,0 +1,1 @@
+﻿# Trip request/response schemas
