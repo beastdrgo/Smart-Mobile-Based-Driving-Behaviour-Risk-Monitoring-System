@@ -47,32 +47,3 @@ backend/
 │── tests/
 │── requirements.txt
 │── README.md
-
----
-
-## Features Planned
-
-```Authentication
-    Driver login
-    Admin login
-    JWT token generation
-    Trip Management
-    Start trip
-    End trip
-    Store trip summary
-    Event Tracking
-    Harsh braking event
-    Overspeed event
-    Sharp turn event
-    Crash-like event
-    Scoring
-    Safety score
-    Productivity score
-    Final weighted score
-    Dashboard
-    Active trips
-    Monthly reports
-    Driver analytics
-    Event summaries
-
----
