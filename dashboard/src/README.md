@@ -1,7 +1,3 @@
-Here’s a **complete, clean, professional README.md** for your Dashboard. You can copy-paste this directly into `Dashboard/README.md`.
-
----
-
 # 📊 Fleet Guard Dashboard
 
 Frontend dashboard for the **Smart Mobile-Based Driver Safety & Fleet Monitoring System**.
