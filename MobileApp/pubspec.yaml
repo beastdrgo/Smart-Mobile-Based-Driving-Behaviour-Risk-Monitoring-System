@@ -1,120 +1,43 @@
-name: fleet_guard_mobile
-description: Smart Mobile-Based Driver Safety & Fleet Monitoring System
-publish_to: "none"
-
-version: 1.0.0+1
-
-environment:
-  sdk: ">=3.4.0 <4.0.0"
-
-# ===============================
-# MAIN DEPENDENCIES
-# ===============================
 dependencies:
   flutter:
     sdk: flutter
 
   cupertino_icons: ^1.0.8
 
-  # -------------------------------
-  # STATE MANAGEMENT & NAVIGATION
-  # -------------------------------
-  provider: ^6.1.2
-  go_router: ^14.6.2
+  # State Management
+  provider: ^6.1.5
 
-  # -------------------------------
-  # NETWORKING
-  # -------------------------------
-  dio: ^5.4.3
-  http: ^1.2.2
-  connectivity_plus: ^6.1.0
+  # HTTP / API
+  dio: ^5.9.0
+  http: ^1.5.0
 
-  # -------------------------------
-  # LOCAL STORAGE
-  # -------------------------------
-  shared_preferences: ^2.3.2
+  # Smartphone Sensors
+  sensors_plus: ^6.1.2
+
+  # GPS / Location
+  geolocator: ^14.0.2
+  geocoding: ^4.0.0
+
+  # BLE Communication
+  flutter_blue_plus: ^1.35.5
+
+  # Storage
+  shared_preferences: ^2.5.3
   hive: ^2.2.3
   hive_flutter: ^1.1.0
 
-  # -------------------------------
-  # SENSOR + LOCATION
-  # -------------------------------
-  geolocator: ^14.0.2
-  geocoding: ^4.0.0
-  sensors_plus: ^7.0.0
+  # Permissions
   permission_handler: ^12.0.1
 
-  # -------------------------------
-  # BACKGROUND SERVICES
-  # -------------------------------
-  flutter_background_service: ^5.1.0
-  flutter_background_service_android: ^6.3.0
+  # Maps
+  google_maps_flutter: ^2.12.3
 
-  # -------------------------------
-  # UI / VISUALS
-  # -------------------------------
-  intl: ^0.19.0
-  fl_chart: ^0.69.0
-  google_fonts: ^6.2.1
+  # Charts / Visualization
+  fl_chart: ^1.0.0
 
-  # -------------------------------
-  # NOTIFICATIONS
-  # -------------------------------
-  firebase_core: ^3.6.0
-  firebase_messaging: ^15.1.3
-  flutter_local_notifications: ^17.2.3
-
-  # -------------------------------
-  # ENV CONFIG
-  # -------------------------------
-  flutter_dotenv: ^5.1.0
-
-  # -------------------------------
-  # UTILITIES
-  # -------------------------------
+  # Utilities
+  intl: ^0.20.2
   uuid: ^4.5.1
-  logger: ^2.4.0
 
-  # -------------------------------
-  # DEVICE INFO
-  # -------------------------------
-  device_info_plus: ^10.1.0
-
-  # -------------------------------
-  # OPTIONAL (future)
-  # -------------------------------
-  # map integration if needed later
-  google_maps_flutter: ^2.9.0
-
-# ===============================
-# DEV DEPENDENCIES
-# ===============================
-dev_dependencies:
-  flutter_test:
-    sdk: flutter
-
-  flutter_lints: ^4.0.0
-
-  # Code generation
-  build_runner: ^2.4.13
-  hive_generator: ^2.0.1
-  json_serializable: ^6.9.0
-
-  # Testing
-  mocktail: ^1.0.4
-
-# ===============================
-# FLUTTER CONFIG
-# ===============================
-flutter:
-  uses-material-design: true
-
-  assets:
-    - .env
-    - assets/images/
-    - assets/icons/
-
-  fonts:
-    - family: Poppins
-      fonts:
-        - asset: assets/fonts/Poppins-Regular.ttf
+  # JSON
+  json_annotation: ^4.9.0
