@@ -1,19 +1,23 @@
+import { lazy } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { AppShell } from '@/components/layout/AppShell'
-import Dashboard from '@/pages/Dashboard'
-import LiveMap from '@/pages/LiveMap'
-import Drivers from '@/pages/Drivers'
-import Vehicles from '@/pages/Vehicles'
-import Trips from '@/pages/Trips'
-import Events from '@/pages/Events'
-import CrashInvestigation from '@/pages/CrashInvestigation'
-import AiAnalytics from '@/pages/AiAnalytics'
-import Heatmaps from '@/pages/Heatmaps'
-import Reports from '@/pages/Reports'
-import SystemHealth from '@/pages/SystemHealth'
-import FleetMonitoring from '@/pages/FleetMonitoring'
 import { SimplePage } from '@/pages/SimplePage'
 import { Building2, UserCog, Bell, Settings } from 'lucide-react'
+
+// Route-level code splitting: each page ships as its own chunk and is
+// fetched on demand, keeping the initial bundle small.
+const Dashboard = lazy(() => import('@/pages/Dashboard'))
+const LiveMap = lazy(() => import('@/pages/LiveMap'))
+const Drivers = lazy(() => import('@/pages/Drivers'))
+const Vehicles = lazy(() => import('@/pages/Vehicles'))
+const Trips = lazy(() => import('@/pages/Trips'))
+const Events = lazy(() => import('@/pages/Events'))
+const CrashInvestigation = lazy(() => import('@/pages/CrashInvestigation'))
+const AiAnalytics = lazy(() => import('@/pages/AiAnalytics'))
+const Heatmaps = lazy(() => import('@/pages/Heatmaps'))
+const Reports = lazy(() => import('@/pages/Reports'))
+const SystemHealth = lazy(() => import('@/pages/SystemHealth'))
+const FleetMonitoring = lazy(() => import('@/pages/FleetMonitoring'))
 
 export default function App() {
   return (
