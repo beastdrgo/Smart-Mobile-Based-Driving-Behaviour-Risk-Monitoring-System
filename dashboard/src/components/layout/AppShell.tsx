@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Sidebar } from './Sidebar'
 import { Topbar } from './Topbar'
 import { ErrorBoundary } from '@/components/ui/ErrorBoundary'
+import { PageLoader } from '@/components/ui/PageLoader'
 import { useIsDesktop } from '@/hooks/useMediaQuery'
 
 export function AppShell() {
@@ -40,7 +41,9 @@ export function AppShell() {
               className={fullBleed ? '' : 'p-4 sm:p-5 md:p-7 max-w-[1600px] mx-auto w-full'}
             >
               <ErrorBoundary key={location.pathname}>
-                <Outlet />
+                <Suspense fallback={<PageLoader />}>
+                  <Outlet />
+                </Suspense>
               </ErrorBoundary>
             </motion.div>
           </AnimatePresence>
