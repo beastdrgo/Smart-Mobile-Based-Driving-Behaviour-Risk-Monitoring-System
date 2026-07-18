@@ -1,0 +1,102 @@
+import { useEffect, useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Search, Bell, Sun, Moon, ChevronDown, Cloud, Command } from 'lucide-react'
+import { useTheme } from '@/lib/theme'
+import { Avatar } from '@/components/ui/Avatar'
+import { cn } from '@/lib/utils'
+
+function useClock() {
+  const [now, setNow] = useState(new Date())
+  useEffect(() => {
+    const t = setInterval(() => setNow(new Date()), 1000)
+    return () => clearInterval(t)
+  }, [])
+  return now
+}
+
+export function Topbar() {
+  const { theme, toggle } = useTheme()
+  const now = useClock()
+  const [org, setOrg] = useState('FleetGuard · Mangalore')
+  const [orgOpen, setOrgOpen] = useState(false)
+
+  const time = now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })
+  const date = now.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })
+
+  return (
+    <header className="sticky top-0 z-20 h-16 glass rounded-none border-b border-white/5 flex items-center gap-3 px-5">
+      {/* Search */}
+      <div className="relative flex-1 max-w-md">
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted" />
+        <input
+          placeholder="Search drivers, vehicles, trips, events…"
+          className="w-full h-10 rounded-xl bg-white/[0.04] border border-white/8 pl-9 pr-16 text-[13px] text-primary placeholder:text-muted outline-none focus:border-cyan-400/40 focus:bg-white/[0.06] transition-all"
+        />
+        <kbd className="absolute right-3 top-1/2 -translate-y-1/2 hidden sm:flex items-center gap-0.5 text-[10px] text-muted border border-white/10 rounded px-1.5 py-0.5">
+          <Command className="h-2.5 w-2.5" />K
+        </kbd>
+      </div>
+
+      <div className="flex-1" />
+
+      {/* Org selector */}
+      <div className="relative hidden md:block">
+        <button onClick={() => setOrgOpen((o) => !o)}
+          className="flex items-center gap-2 h-10 px-3 rounded-xl bg-white/[0.04] border border-white/8 hover:border-cyan-400/30 transition-colors text-[13px] text-secondary">
+          <span className="h-2 w-2 rounded-full accent-gradient" />
+          <span className="text-primary font-medium">{org}</span>
+          <ChevronDown className="h-3.5 w-3.5" />
+        </button>
+        <AnimatePresence>
+          {orgOpen && (
+            <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 6 }}
+              className="absolute right-0 mt-2 w-56 glass rounded-xl p-1.5 z-50">
+              {['FleetGuard · Mangalore', 'Amazon Logistics · South', 'Swiggy · Coastal Hub', 'BlueDart · Karnataka'].map((o) => (
+                <button key={o} onClick={() => { setOrg(o); setOrgOpen(false) }}
+                  className={cn('w-full text-left px-3 py-2 rounded-lg text-[13px] hover:bg-white/5 transition-colors',
+                    o === org ? 'text-cyan-300' : 'text-secondary')}>{o}</button>
+              ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+
+      {/* Weather */}
+      <div className="hidden lg:flex items-center gap-2 h-10 px-3 rounded-xl bg-white/[0.04] border border-white/8 text-[13px]">
+        <Cloud className="h-4 w-4 text-cyan-300" />
+        <span className="text-primary font-medium">29°C</span>
+        <span className="text-muted">Mangalore</span>
+      </div>
+
+      {/* Clock */}
+      <div className="hidden sm:flex flex-col items-end leading-none">
+        <span className="font-display text-[15px] font-semibold text-primary tabular-nums">{time}</span>
+        <span className="text-[10px] text-muted mt-0.5">{date}</span>
+      </div>
+
+      {/* Theme */}
+      <button onClick={toggle} className="grid place-items-center h-10 w-10 rounded-xl bg-white/[0.04] border border-white/8 hover:border-cyan-400/30 text-secondary hover:text-cyan-300 transition-colors">
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.span key={theme} initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.2 }}>
+            {theme === 'dark' ? <Moon className="h-[18px] w-[18px]" /> : <Sun className="h-[18px] w-[18px]" />}
+          </motion.span>
+        </AnimatePresence>
+      </button>
+
+      {/* Notifications */}
+      <button className="relative grid place-items-center h-10 w-10 rounded-xl bg-white/[0.04] border border-white/8 hover:border-cyan-400/30 text-secondary hover:text-cyan-300 transition-colors">
+        <Bell className="h-[18px] w-[18px]" />
+        <span className="absolute top-2 right-2.5 h-2 w-2 rounded-full bg-rose-500 ring-2 ring-[var(--color-navy-900)] animate-pulse-glow" />
+      </button>
+
+      {/* Profile */}
+      <button className="flex items-center gap-2 pl-1 pr-2 h-10 rounded-xl hover:bg-white/[0.04] transition-colors">
+        <Avatar name="Mohammed Afzal" size={32} />
+        <div className="hidden xl:block text-left leading-none">
+          <div className="text-[13px] font-medium text-primary">Mohammed Afzal</div>
+          <div className="text-[10px] text-muted mt-0.5">Fleet Administrator</div>
+        </div>
+      </button>
+    </header>
+  )
+}

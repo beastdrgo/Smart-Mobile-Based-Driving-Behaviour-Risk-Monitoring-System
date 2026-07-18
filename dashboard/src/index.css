@@ -1,0 +1,202 @@
+@import 'tailwindcss';
+@import 'leaflet/dist/leaflet.css';
+
+/* ============================================================
+   FleetGuard AI — Design System
+   Dark navy · glass · cyan / electric-blue accents
+   ============================================================ */
+
+@theme {
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Sora', 'Inter', system-ui, sans-serif;
+
+  /* Base surfaces */
+  --color-navy-950: #05070f;
+  --color-navy-900: #070b18;
+  --color-navy-850: #0a1020;
+  --color-navy-800: #0e1526;
+  --color-navy-700: #141c33;
+  --color-navy-600: #1c2742;
+
+  /* Accents */
+  --color-cyan: #22d3ee;
+  --color-cyan-soft: #67e8f9;
+  --color-electric: #3b82f6;
+  --color-electric-soft: #60a5fa;
+
+  /* Status */
+  --color-safe: #34d399;
+  --color-warn: #fbbf24;
+  --color-danger: #f43f5e;
+  --color-idle: #60a5fa;
+
+  --radius-xl: 1.25rem;
+}
+
+:root {
+  color-scheme: dark;
+  --glass-bg: rgba(18, 26, 48, 0.55);
+  --glass-border: rgba(255, 255, 255, 0.07);
+  --glass-highlight: rgba(255, 255, 255, 0.04);
+  --text-primary: #f1f5fb;
+  --text-secondary: #9aa7c2;
+  --text-muted: #5c6b8a;
+  --page-bg: radial-gradient(1200px 700px at 80% -10%, rgba(34, 211, 238, 0.08), transparent 55%),
+    radial-gradient(1000px 600px at -10% 10%, rgba(59, 130, 246, 0.10), transparent 55%),
+    linear-gradient(180deg, #070b18 0%, #05070f 100%);
+}
+
+html.light {
+  color-scheme: light;
+  --glass-bg: rgba(255, 255, 255, 0.75);
+  --glass-border: rgba(15, 23, 42, 0.08);
+  --glass-highlight: rgba(255, 255, 255, 0.6);
+  --text-primary: #0b1220;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  --page-bg: radial-gradient(1200px 700px at 80% -10%, rgba(34, 211, 238, 0.10), transparent 55%),
+    radial-gradient(1000px 600px at -10% 10%, rgba(59, 130, 246, 0.10), transparent 55%),
+    linear-gradient(180deg, #eef2fb 0%, #e6ebf6 100%);
+}
+
+* {
+  border-color: var(--glass-border);
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background: var(--page-bg);
+  background-attachment: fixed;
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ---------- Utilities layered on Tailwind ---------- */
+@layer utilities {
+  .text-primary { color: var(--text-primary); }
+  .text-secondary { color: var(--text-secondary); }
+  .text-muted { color: var(--text-muted); }
+
+  .font-display { font-family: var(--font-display); }
+
+  .glass {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    box-shadow: inset 0 1px 0 0 var(--glass-highlight),
+      0 12px 40px -12px rgba(0, 0, 0, 0.55);
+  }
+
+  .glass-hover {
+    transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
+  }
+  .glass-hover:hover {
+    border-color: rgba(34, 211, 238, 0.35);
+    box-shadow: inset 0 1px 0 0 var(--glass-highlight),
+      0 18px 55px -14px rgba(34, 211, 238, 0.22);
+  }
+
+  .accent-gradient {
+    background: linear-gradient(135deg, var(--color-cyan), var(--color-electric));
+  }
+  .text-accent-gradient {
+    background: linear-gradient(120deg, #67e8f9, #60a5fa);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .ring-glow {
+    box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.3), 0 0 32px -6px rgba(34, 211, 238, 0.5);
+  }
+
+  .grid-lines {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+}
+
+/* ---------- Scrollbar ---------- */
+::-webkit-scrollbar { width: 9px; height: 9px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgba(120, 140, 180, 0.28);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(120, 140, 180, 0.5); background-clip: content-box; }
+
+/* ---------- Keyframe animations ---------- */
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(-0.4deg); }
+}
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50% { opacity: 0.95; transform: scale(1.06); }
+}
+@keyframes shimmer {
+  0% { background-position: -800px 0; }
+  100% { background-position: 800px 0; }
+}
+@keyframes sweep {
+  0% { transform: translateX(-120%); }
+  100% { transform: translateX(220%); }
+}
+
+.animate-float-slow { animation: float-slow 6s ease-in-out infinite; }
+.animate-pulse-glow { animation: pulse-glow 2.8s ease-in-out infinite; }
+
+.skeleton {
+  background: linear-gradient(90deg, rgba(255,255,255,0.03) 25%, rgba(255,255,255,0.08) 37%, rgba(255,255,255,0.03) 63%);
+  background-size: 800px 100%;
+  animation: shimmer 1.6s infinite linear;
+}
+
+/* ---------- Leaflet dark theme ---------- */
+.leaflet-container {
+  background: #05070f;
+  font-family: var(--font-sans);
+}
+.leaflet-tile {
+  filter: brightness(0.75) invert(1) contrast(0.92) hue-rotate(190deg) saturate(0.7) brightness(0.9);
+}
+.leaflet-control-zoom a {
+  background: rgba(14, 21, 38, 0.9) !important;
+  color: #cbd5e1 !important;
+  border-color: rgba(255,255,255,0.08) !important;
+  backdrop-filter: blur(10px);
+}
+.leaflet-control-zoom a:hover { color: #22d3ee !important; }
+.leaflet-control-attribution {
+  background: rgba(5, 7, 15, 0.6) !important;
+  color: #5c6b8a !important;
+  backdrop-filter: blur(6px);
+}
+.leaflet-control-attribution a { color: #7c8bb0 !important; }
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+  background: rgba(14, 21, 38, 0.95) !important;
+  color: #f1f5fb !important;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+/* Fleet marker */
+.fleet-marker { position: relative; }
+.fleet-marker .halo {
+  position: absolute; inset: 0; border-radius: 999px;
+  animation: pulse-glow 2.4s ease-in-out infinite;
+}
