@@ -53,4 +53,16 @@ All screens read from `src/data/mockData.ts`. To go live:
 2. Replace the mock imports with query hooks hitting the Node/Express API.
 3. Feed live coordinates into `FleetMap` — the marker-movement animation already supports position updates.
 
+## Deploying to Vercel
+
+The app is a static SPA (Vite) and deploys to Vercel with no server config.
+
+1. Import the GitHub repo in Vercel.
+2. **Set Root Directory to `dashboard`** (the app lives in a subfolder).
+3. Framework preset **Vite** is auto-detected · Build `npm run build` · Output `dist`.
+4. `vercel.json` (included) rewrites all routes to `index.html` so client-side
+   routes like `/drivers` and `/map` work on refresh and deep links.
+
+No environment variables are required (the dashboard runs on mock data).
+
 Part of the **FleetGuard AI** project · dashboard module.
